@@ -6,9 +6,6 @@ public class EnemyBullet : MonoBehaviour
 
     void Update()
     {
-       
-        // transform.position += Vector3.down * speed * Time.deltaTime;
-
         if (transform.position.y < -10f)
         {
             Destroy(gameObject);
@@ -24,7 +21,6 @@ public class EnemyBullet : MonoBehaviour
 
         else if (other.CompareTag("Base") || other.CompareTag("Escudo"))
         {
-           
             Destroy(gameObject);
         }
     }

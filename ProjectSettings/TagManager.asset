@@ -10,6 +10,7 @@ TagManager:
   - Invader50
   - Invader100
   - Escudo
+  - Base
   layers:
   - Default
   - TransparentFX

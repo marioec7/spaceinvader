@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Invader
   pointsValue: 100
-  shootPoint: {fileID: 497579476398546352, guid: e41df34fce71a6c4cb8f92a0a8b6d327, type: 3}
+  bulletSpeed: 5
 --- !u!50 &-962698347778962146
 Rigidbody2D:
   serializedVersion: 5
@@ -193,8 +193,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed6ec26a174eead46b9a2476464de1ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBullet
-  speed: 5
-  bulletPrefab: {fileID: 4132860952082196161, guid: e41df34fce71a6c4cb8f92a0a8b6d327, type: 3}
-  minShootDelay: 1
-  maxShootDelay: 5
-  bulletSpeed: 10
+  speed: 10

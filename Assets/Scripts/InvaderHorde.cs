@@ -8,14 +8,14 @@ public class InvaderHorde : MonoBehaviour
     public int rows = 5;
     public int columns = 11;
     public float spacing = 0.025f;
-    public float speed = 1f;
+    public float speed = 8f;
     private int direction = 1;
     public float stepDownAmount = 0.5f;
     public float boundary = 8f;
 
     public GameObject enemyBulletPrefab;
-    public float minShootDelay = 1f;
-    public float maxShootDelay = 3f;
+    public float minShootDelay = 0.5f;
+    public float maxShootDelay = 1.5f;
 
     private List<Invader> activeInvaders = new List<Invader>();
 
@@ -103,7 +103,6 @@ public class InvaderHorde : MonoBehaviour
                 int randomIndex = Random.Range(0, activeInvaders.Count);
                 Invader shooter = activeInvaders[randomIndex];
 
-                // Dispara desde el invasor seleccionado
                 shooter.Shoot(enemyBulletPrefab);
             }
         }

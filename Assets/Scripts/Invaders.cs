@@ -34,10 +34,5 @@ public class Invader : MonoBehaviour
 
             Destroy(gameObject);
         }
-
-        else if (other.CompareTag("Base"))
-        {
-
-        }
     }
 }

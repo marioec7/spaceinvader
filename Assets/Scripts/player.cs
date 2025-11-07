@@ -47,7 +47,7 @@ public class player : MonoBehaviour
         else if (other.CompareTag("Invader10") || other.CompareTag("Invader25") ||
                      other.CompareTag("Invader50") || other.CompareTag("Invader100"))
         {
-            // LLAMA a la nueva función estática para evitar el error de compilación.
+            
             ScoreManager.TriggerGameOverByContact();
         }
     }

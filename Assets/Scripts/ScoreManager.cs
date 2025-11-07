@@ -45,11 +45,12 @@ public class ScoreManager : MonoBehaviour
             winPanel.SetActive(false);
         }
 
-        totalInvaders = FindObjectsOfType<Collider2D>()
-                         .Count(c => c.CompareTag("Invader10") ||
-                                      c.CompareTag("Invader25") ||
-                                      c.CompareTag("Invader50") ||
-                                      c.CompareTag("Invader100"));
+        // Corrección CS0618 (parte 1): FindObjectsOfType (ya resuelta)
+        totalInvaders = FindObjectsByType<Collider2D>(FindObjectsSortMode.None)
+                            .Count(c => c.CompareTag("Invader10") ||
+                                        c.CompareTag("Invader25") ||
+                                        c.CompareTag("Invader50") ||
+                                        c.CompareTag("Invader100"));
         invadersKilled = 0;
     }
 
@@ -76,20 +77,23 @@ public class ScoreManager : MonoBehaviour
         if (pointsToAdd > 0)
         {
             invadersKilled++;
-            ScoreManager manager = FindObjectOfType<ScoreManager>();
+            // Corrección CS0618 (parte 2)
+            ScoreManager manager = FindFirstObjectByType<ScoreManager>();
             if (invadersKilled >= totalInvaders)
             {
                 manager?.GameWin();
             }
         }
 
-        FindObjectOfType<ScoreManager>()?.UpdateScoreText();
+        // Corrección CS0618 (parte 3)
+        FindFirstObjectByType<ScoreManager>()?.UpdateScoreText();
     }
 
     public static void LoseLife()
     {
         lives--;
-        ScoreManager manager = FindObjectOfType<ScoreManager>();
+        // Corrección CS0618 (parte 4)
+        ScoreManager manager = FindFirstObjectByType<ScoreManager>();
 
         if (manager != null)
         {
@@ -102,10 +106,10 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    // NUEVA FUNCIÓN ESTÁTICA para ser llamada por player.cs
     public static void TriggerGameOverByContact()
     {
-        ScoreManager manager = FindObjectOfType<ScoreManager>();
+        // Corrección CS0618 (parte 5)
+        ScoreManager manager = FindFirstObjectByType<ScoreManager>();
         manager?.GameOver();
     }
 

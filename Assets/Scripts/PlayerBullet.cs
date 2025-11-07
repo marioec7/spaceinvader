@@ -2,48 +2,47 @@ using UnityEngine;
 
 public class PlayerBullet : MonoBehaviour
 {
-    public float speed = 10f; 
+    public float speed = 10f;
 
     void Update()
     {
-      
         transform.position += Vector3.up * speed * Time.deltaTime;
 
-        
         if (transform.position.y > 10f)
         {
             Destroy(gameObject);
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        
-        if (collision.gameObject.CompareTag("Invader10"))
-        {
-            Destroy(collision.gameObject);
+        int points = 0;
+        GameObject hitObject = other.gameObject;
 
-            Destroy(gameObject);
+        if (hitObject.CompareTag("Invader10"))
+        {
+            points = 10;
+        }
+        else if (hitObject.CompareTag("Invader25"))
+        {
+            points = 25;
+        }
+        else if (hitObject.CompareTag("Invader50"))
+        {
+            points = 50;
+        }
+        else if (hitObject.CompareTag("Invader100"))
+        {
+            points = 100;
         }
 
-        if (collision.gameObject.CompareTag("Invader25"))
+        Debug.Log("Colisión detectada con: " + hitObject.tag);
+        Debug.Log("Puntos a sumar: " + points);
+
+        if (points > 0)
         {
-            Destroy(collision.gameObject);
-
-            Destroy(gameObject);
-        }
-
-        if (collision.gameObject.CompareTag("Invader50"))
-        {
-            Destroy(collision.gameObject);
-
-            Destroy(gameObject);
-        }
-
-        if (collision.gameObject.CompareTag("Invader100"))
-        {
-            Destroy(collision.gameObject);
-
+            ScoreManager.AddPoints(points);
+            Destroy(hitObject);
             Destroy(gameObject);
         }
     }

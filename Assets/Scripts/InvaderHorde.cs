@@ -7,7 +7,7 @@ public class InvaderHorde : MonoBehaviour
     public GameObject[] invaderPrefabs;
     public int rows = 5;
     public int columns = 11;
-    public float spacing = 0.025f;
+    public float spacing = 0.005f;
     public float speed = 8f;
     private int direction = 1;
     public float stepDownAmount = 0.5f;

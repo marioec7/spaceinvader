@@ -6,16 +6,14 @@ public class player : MonoBehaviour
     public int velocidad;
     public Vector3 _velocidad;
     public GameObject bulletPrefab;
-    public float fireRate = 0.5f; 
+    public float fireRate = 0.5f;
     private float nextFireTime = 0f;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         miTranform = transform;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKey(KeyCode.RightArrow))
@@ -38,6 +36,19 @@ public class player : MonoBehaviour
     {
         Instantiate(bulletPrefab, transform.position, Quaternion.identity);
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("EnemyBullet"))
+        {
+            ScoreManager.LoseLife();
+            Destroy(other.gameObject);
+        }
+        else if (other.CompareTag("Invader10") || other.CompareTag("Invader25") ||
+                     other.CompareTag("Invader50") || other.CompareTag("Invader100"))
+        {
+            // LLAMA a la nueva función estática para evitar el error de compilación.
+            ScoreManager.TriggerGameOverByContact();
+        }
+    }
 }
-
-

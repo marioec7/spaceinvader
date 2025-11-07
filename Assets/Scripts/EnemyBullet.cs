@@ -19,7 +19,7 @@ public class EnemyBullet : MonoBehaviour
             Destroy(gameObject);
         }
 
-        else if (other.CompareTag("Base") || other.CompareTag("Escudo"))
+        else if (other.CompareTag("Base"))
         {
             Destroy(gameObject);
         }

@@ -11,8 +11,7 @@ public class InvaderHorde : MonoBehaviour
     public float speed = 8f;
     private int direction = 1;
     public float stepDownAmount = 0.5f;
-    public float boundary = 8f;
-
+    public float boundary = 7.5f;
     public GameObject enemyBulletPrefab;
     public float minShootDelay = 0.5f;
     public float maxShootDelay = 1.5f;

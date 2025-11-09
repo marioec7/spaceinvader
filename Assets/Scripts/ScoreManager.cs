@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 using System.Linq;
 
@@ -45,12 +46,11 @@ public class ScoreManager : MonoBehaviour
             winPanel.SetActive(false);
         }
 
-        // Corrección CS0618 (parte 1): FindObjectsOfType (ya resuelta)
         totalInvaders = FindObjectsByType<Collider2D>(FindObjectsSortMode.None)
                             .Count(c => c.CompareTag("Invader10") ||
-                                        c.CompareTag("Invader25") ||
-                                        c.CompareTag("Invader50") ||
-                                        c.CompareTag("Invader100"));
+                                         c.CompareTag("Invader25") ||
+                                         c.CompareTag("Invader50") ||
+                                         c.CompareTag("Invader100"));
         invadersKilled = 0;
     }
 
@@ -77,7 +77,6 @@ public class ScoreManager : MonoBehaviour
         if (pointsToAdd > 0)
         {
             invadersKilled++;
-            // Corrección CS0618 (parte 2)
             ScoreManager manager = FindFirstObjectByType<ScoreManager>();
             if (invadersKilled >= totalInvaders)
             {
@@ -85,14 +84,12 @@ public class ScoreManager : MonoBehaviour
             }
         }
 
-        // Corrección CS0618 (parte 3)
         FindFirstObjectByType<ScoreManager>()?.UpdateScoreText();
     }
 
     public static void LoseLife()
     {
         lives--;
-        // Corrección CS0618 (parte 4)
         ScoreManager manager = FindFirstObjectByType<ScoreManager>();
 
         if (manager != null)
@@ -108,11 +105,15 @@ public class ScoreManager : MonoBehaviour
 
     public static void TriggerGameOverByContact()
     {
-        // Corrección CS0618 (parte 5)
         ScoreManager manager = FindFirstObjectByType<ScoreManager>();
         manager?.GameOver();
     }
 
+    public void RestartGame()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 
     void UpdateScoreText()
     {
@@ -141,7 +142,6 @@ public class ScoreManager : MonoBehaviour
             timerText.text = "Tiempo: " + seconds.ToString();
         }
     }
-
 
     void GameOver()
     {

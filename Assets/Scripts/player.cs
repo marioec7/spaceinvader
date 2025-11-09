@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class player : MonoBehaviour
+public class Player : MonoBehaviour
 {
     private Transform miTranform;
     public int velocidad;
@@ -45,10 +45,11 @@ public class player : MonoBehaviour
             Destroy(other.gameObject);
         }
         else if (other.CompareTag("Invader10") || other.CompareTag("Invader25") ||
-                     other.CompareTag("Invader50") || other.CompareTag("Invader100"))
+                      other.CompareTag("Invader50") || other.CompareTag("Invader100"))
         {
-            
+            // LLAMADA CLAVE: Activa el Game Over y el panel
             ScoreManager.TriggerGameOverByContact();
+            Destroy(gameObject); // Destruye al jugador inmediatamente después del contacto
         }
     }
 }

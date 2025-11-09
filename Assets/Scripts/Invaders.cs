@@ -25,7 +25,6 @@ public class Invader : MonoBehaviour
         if (other.CompareTag("PlayerBullet"))
         {
             Destroy(other.gameObject);
-
             InvaderHorde horde = transform.parent.GetComponent<InvaderHorde>();
             if (horde != null)
             {
